@@ -22,7 +22,7 @@ class CompanyFactory extends Factory
             'name' => $this->faker->company,
             'email' => $this->faker->unique()->safeEmail,
             'website' => $this->faker->url,
-            'logo_file_path' =>  ltrim($this->faker->image('storage/app/public', 256,256,null), 'storage/app/public')
+            'logo_file_path' =>  ltrim($this->faker->image('public/storage', 128,128), 'public/storage\\'),
         ];
     }
 }
