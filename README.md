@@ -64,7 +64,10 @@ php artisan key:generate
 
 **Run migrations**
 
-Migrate the tadabase tables to update the newly created DB:
+Link storage folder and seed the database tables to update the newly created DB:
+```
+php artisan storage:link
+```
 
 ```
 php artisan migrate:fresh --seed
