@@ -81,5 +81,9 @@ You can use Nginx or Apache, but the built-in web server works great:
 php -S localhost:8000 -t public
 ```
 
+### Login credentials
+Email: `admin@admin.com`
+Password: `password`
+
 ## Authors
 [MarkBukowski](https://github.com/MarkBukowski)
