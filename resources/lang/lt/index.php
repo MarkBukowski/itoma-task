@@ -40,6 +40,8 @@ return [
     'login' => 'Prisijungimas',
     'pass' => 'Slaptažodis',
     'remember' => 'Prisiminti mane',
+    'dashboard' => 'Pagrindinis',
+    'success' => 'Prisijungimas sėkmingas!',
     'forgot' => 'Pamiršote slaptažodį?',
     'reset' => 'Atkurti slaptažodį',
     'send.reset' => 'Siųsti slaptažodžio atkūrimo nuorodą',

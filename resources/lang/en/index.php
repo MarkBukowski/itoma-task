@@ -40,6 +40,8 @@ return [
     'login' => 'Login',
     'pass' => 'Password',
     'remember' => 'Remember Me',
+    'dashboard' => 'Dashboard',
+    'success' => 'Login successful!',
     'forgot' => 'Forgot Your Password?',
     'reset' => 'Reset Password',
     'send.reset' => 'Send password reset link',
