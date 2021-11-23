@@ -22,3 +22,5 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 
 Route::resource('employees', EmployeeController::class)->middleware('auth');
 Route::resource('companies', CompanyController::class)->middleware('auth');
+
+Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'App\Http\Controllers\LanguageController@switchLang']);

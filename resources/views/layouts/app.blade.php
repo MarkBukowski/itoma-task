@@ -38,36 +38,56 @@
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('employees.index') }}">
-                                Employees
+                                {{ __('index.employees') }}
                             </a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link" href="{{ route('companies.index') }}">
-                                Companies
+                                {{ __('index.companies') }}
                             </a>
                         </li>
                     </ul>
                 @endif
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="flag-icon flag-icon-{{Config::get('languages')[App::getLocale()]['flag-icon']}}">
+                                </span>
+                                {{ Config::get('languages')[App::getLocale()]['display'] }}
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                @foreach (Config::get('languages') as $lang => $language)
+                                    @if ($lang != App::getLocale())
+                                        <a class="dropdown-item" href="{{ route('lang.switch', $lang) }}">
+                                            <span class="flag-icon flag-icon-{{$language['flag-icon']}}">
+                                            </span>
+                                            {{$language['display']}}
+                                        </a>
+                                    @endif
+                                @endforeach
+                            </div>
+                        </li>
+
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('index.login') }}</a>
                                 </li>
                             @endif
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                                    {{ Auth::user()->email }}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('index.logout') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -123,8 +143,9 @@
     <script>
         $(document).ready(function () {
             var table = $('#tbl').DataTable({
-                paging: true,
-
+                "language": {
+                    "url": "{{ __('index.lt') }}"
+                }
             });
         });
     </script>
