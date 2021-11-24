@@ -46,4 +46,13 @@ return [
     'reset' => 'Reset Password',
     'send.reset' => 'Send password reset link',
 
+//      Notification messages
+    'company.created' => 'Company created successfully.',
+    'company.updated' => 'Company updated successfully.',
+    'company.deleted' => 'Company deleted successfully.',
+    'company.cannot.delete' => 'Cannot delete, company has employees assigned.',
+    'employee.created' => 'Employee added successfully.',
+    'employee.updated' => 'Employee info updated successfully.',
+    'employee.deleted' => 'Employee data deleted successfully.',
+
 ];

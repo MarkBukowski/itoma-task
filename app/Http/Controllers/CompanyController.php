@@ -42,10 +42,10 @@ class CompanyController extends Controller
     {
         // Validation
         $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:companies',
-            'website' => 'required|url',
-            'file' => 'required|file|image'
+            'name' => 'required|max:255',
+            'email' => 'required|email|unique:companies|max:255',
+            'website' => 'required|url|max:255',
+            'file' => 'required|file|max:4096|image'
         ]);
 
         // File being saved in storage/app/public
@@ -66,7 +66,7 @@ class CompanyController extends Controller
 //        Mail Send
 //        Mail::to($request->email)->send(new MailtrapTrial());
 
-        return redirect()->route('companies.index')->with('success_message', 'Company created successfully.');
+        return redirect()->route('companies.index')->with('success_message', __('index.company.created'));
     }
 
     /**
@@ -101,10 +101,10 @@ class CompanyController extends Controller
     {
         // Validation
         $request->validate([
-            'name' => 'required',
-            'email' => 'required|email',
-            'website' => 'required|url',
-            'file' => 'file|image'
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255',
+            'website' => 'required|url|max:255',
+            'file' => 'required|file|max:4096|image'
         ]);
 
         // Check if file is being uploaded and update the file
@@ -123,7 +123,7 @@ class CompanyController extends Controller
             'website' => $request->website,
         ]);
 
-        return redirect()->route('companies.index')->with('success_message', 'Company updated successfully.');
+        return redirect()->route('companies.index')->with('success_message', __('index.company.updated'));
     }
 
     /**
@@ -135,11 +135,11 @@ class CompanyController extends Controller
     public function destroy(Company $company)
     {
         if ($company->companyEmployee->count()) {
-            return redirect()->route('companies.index')->with('info_message', 'Cannot delete, company has employees assigned.');
+            return redirect()->route('companies.index')->with('info_message', __('index.company.cannot.delete'));
         }
 
         Storage::disk('public')->delete($company->logo_file_path);
         $company->delete();
-        return redirect()->route('companies.index')->with('success_message', 'Company deleted successfully.');
+        return redirect()->route('companies.index')->with('success_message', __('index.company.deleted'));
     }
 }

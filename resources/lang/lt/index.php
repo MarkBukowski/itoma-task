@@ -48,4 +48,14 @@ return [
 
 //      Language for DataTables.net
     'lt' => '//cdn.datatables.net/plug-ins/1.11.3/i18n/lt.json',
+
+//      Notification messages
+    'company.created' => 'Įmonė pridėta sėkmingai.',
+    'company.updated' => 'Įmonė atnaujinta sėkmingai.',
+    'company.deleted' => 'Įmonė ištrinta sėkmingai.',
+    'company.cannot.delete' => 'Negalima ištrinti, įmonė turi jai priskirtų darbuotojų.',
+    'employee.created' => 'Darbuotojas pridėtas sėkmingai.',
+    'employee.updated' => 'Darbuotojo duomenys atnaujinti sėkmingai.',
+    'employee.deleted' => 'Darbuotojo duomenys ištrinti sėkmingai.',
+
 ];

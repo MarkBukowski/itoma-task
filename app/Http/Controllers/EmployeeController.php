@@ -27,7 +27,7 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        $companies = Company::all();
+        $companies = Company::all('id', 'name');
 
         return view('employees.create', ['companies' => $companies]);
     }
@@ -42,8 +42,8 @@ class EmployeeController extends Controller
     {
         // Validation
         $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:employees',
+            'name' => 'required|max:255',
+            'email' => 'required|email|unique:employees|max:255',
             'phone' => 'required|numeric|starts_with:370|digits:11',
             'company_id' => 'required'
         ]);
@@ -57,7 +57,7 @@ class EmployeeController extends Controller
         ]);
         $employee->save();
 
-        return redirect()->route('employees.index')->with('success_message', 'Employee added successfully.');
+        return redirect()->route('employees.index')->with('success_message', __('index.employee.created'));
 
     }
 
@@ -80,7 +80,7 @@ class EmployeeController extends Controller
      */
     public function edit(Employee $employee)
     {
-        $employees = Employee::all();
+        $employees = Employee::with('company_id');
         return view('employees.edit', ['employee' => $employee, 'companies' => $employees]);
     }
 
@@ -94,8 +94,8 @@ class EmployeeController extends Controller
     {
         // Validation
         $request->validate([
-            'name' => 'required',
-            'email' => 'required|email',
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255',
             'phone' => 'required|numeric|starts_with:370|digits:11',
             'company_id' => 'required'
         ]);
@@ -109,7 +109,7 @@ class EmployeeController extends Controller
         ]);
         $employee->save();
 
-        return redirect()->route('employees.index')->with('success_message', 'Employee info updated successfully.');
+        return redirect()->route('employees.index')->with('success_message', __('index.employee.updated'));
 
     }
 
@@ -117,11 +117,11 @@ class EmployeeController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Employee  $employee
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Employee $employee)
     {
         $employee->delete();
-        return redirect()->route('employees.index')->with('success_message', 'Employee data deleted successfully.');
+        return redirect()->route('employees.index')->with('success_message', __('index.employee.deleted'));
     }
 }
