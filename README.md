@@ -12,14 +12,15 @@ PHP 8
 
 * Data accessible only for registered user (no registration provided as per request);
 * Laravel Auth used for login process;
-* 2 DB tables, Companies and Employees (using Request class validation methods)
+* 2 DB tables, Companies and Employees (using Request class validation methods);
 * Companies can be deleted once there are no employees attached;
 * DataTables.net implementation;
 * Send an automated email to company about successful registration (using Mailtrap);
 * Migrations, Seeds and CRUD methods used;
 * Pagination;
-* Responsive design
-* All information comes from DB
+* En/Lt languages;
+* Responsive design;
+* All information comes from DB;
 
 
 ## Setup
